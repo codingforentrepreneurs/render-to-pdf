@@ -10,6 +10,6 @@ def render_to_pdf(template_src, context_dict={}):
     html = template.render(context_dict)
     result = BytesIO()
     pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type="application/pdf")
-    return None
+    if pdf.err:
+        return HttpResponse("Invalid PDF", status_code=400, content_type="text/plain")
+    return HttpResponse(result.getvalue(), content_type="application/pdf")
