@@ -20,6 +20,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("pdf", views.invoice_view),
+    path("pdf/", views.invoice_view),
+    path("pdf/advanced/", views.advanced_pdf_view),
     path("admin/", admin.site.urls),
 ]
